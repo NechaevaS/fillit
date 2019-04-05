@@ -20,7 +20,6 @@ typedef struct
 	char			*s;
 	int				h;
 	int				w;
-	int				count;
 	char			simb;
 }					tetr;
 
@@ -36,5 +35,7 @@ typedef struct
 	char			*s;
 	int				ntet;
 }					pattern;
-# define elem(x, y, board) board->s[y * (board->w) + x]
+tetr	g_t[];
+# define MAX_FIG 26
+# define ELEM(x, y, board) board->s[y * (board->w) + x]
 #endif
