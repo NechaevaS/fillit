@@ -6,13 +6,13 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 16:55:19 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/04 17:04:41 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/05 16:58:13 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "fillit.h"
-
-#define BUF_SIZE 21
 
 void from_board_to_pattern(pattern *p, board *b)
 {
@@ -31,7 +31,7 @@ void from_board_to_pattern(pattern *p, board *b)
 			i++;
 			pos++;
 		}
-		p->[pos] = '\n';
+		p->s[pos] = '\n';
 		pos++;
 		j++;
 	}
@@ -51,14 +51,17 @@ int fill_pattern(pattern *p)
 	tmp = create_board(4);
 	while (type < 19)
 	{
-		while(x + t[ntet]->w < 5)
+		//printf("type %d\n", type);
+		while(x + g_t[type].w < 5)
 		{
-			while(y + t[ntet]->h < 5)
+			//printf("x %d\n", x);
+			while(y + g_t[type].h < 5)
 			{
+				//printf("y %d\n", y);
 				fill_board(tmp, g_t + type, x, y);
-				from_board_to_pattern(tmp, p + i);
-				p[i].ntetr = type;
-				remove_board(tmp, g_t = type, x, y);
+				from_board_to_pattern(p + i, tmp);
+				p[i].ntet = type;
+				clean_board(tmp, 4);
 				i++;
 				y++;
 			}
@@ -67,7 +70,7 @@ int fill_pattern(pattern *p)
 		type++;
 	}
 	free_board(tmp);
-
+	return(1);
 }
 
 int get_id(pattern *p, char *str)
@@ -75,37 +78,45 @@ int get_id(pattern *p, char *str)
 	int i;
 	
 	i = 0;
-	while(p[i].s)
+	while(p[i].s[0])
 	{
-		if (ft_strncmp(p[i].s, 21, str) == 0)
-			return(p[i].ntetr);
+		printf("1p %s\n", p[i].s);
+		if (ft_strncmp(p[i].s, str, 20) == 0)
+			return(p[i].ntet);
+		i++;
 	}
 	return (-1);
 }
-int   *file_read(const int fd)
+
+int   read_file(const int fd)
 {
 	pattern	p[19 * 16];
 	char	buf[22];
-	char	*res;
 	int i;
 	int type;
 	int nread;
 
-	ft_memset(p, '0', 19 * 16);
+	ft_memset(p, 0, 19 * 16 * sizeof(pattern));
 	fill_pattern(p);
 	i = 0;
 	while (i < MAX_FIG)
 	{
+		printf("2p %d\n", i);
 		nread = read(fd, buf, 21);
-		buff[21] = '\0';
-		type = get_id(p, buf);
-		if (type == -1)
-			return (0);
+		buf[21] = '\0';
+		if ((type = get_id(p, buf)) == -1)
+		{
+			ft_putstr("error\n");
+			return(0);
+		}
 		if (nread == 20)
 			return (1);
 		i++;
 	}
-	if (i = MAX_FIG)
-		return (0);
+	if (i == MAX_FIG)
+	{
+		ft_putstr("error\n");
+		return(0);
+	}
 	return (1);
 }

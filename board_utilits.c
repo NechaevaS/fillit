@@ -6,10 +6,12 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:03:29 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/04 15:58:47 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/05 16:58:34 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "fillit.h"
 
 board  *create_board(int sz)
@@ -17,7 +19,7 @@ board  *create_board(int sz)
 	board   *b;
 
 	b = (board  *)malloc(sizeof(board));
-	b->s = (char *)malloc(sizof(char) * sz * sz);
+	b->s = (char *)malloc(sz * sz);
 	ft_memset(b->s, '.', sz * sz);
 	b->h = sz;
 	b->w = sz;
@@ -29,7 +31,7 @@ void    free_board(board *b)
 	free(b->s);
 	free(b);
 }
-int     can_place(board *b, tetr *t, int x, int y,)
+int     can_place(board *b, tetr *t, int x, int y)
 {
 	int i;
 	int j;
@@ -42,7 +44,7 @@ int     can_place(board *b, tetr *t, int x, int y,)
 	{
 		while (i < t->w)
 		{
-			if (elem(t, i, j) != '.' && elem(b, x + i, y + j) != '.')
+			if (ELEM(t, i, j) != '.' && ELEM(b, x + i, y + j) != '.')
 				return (0);
 			i++;
 		}
@@ -59,15 +61,34 @@ int     fill_board(board *b, tetr *t, int x, int y)
 	j = 0;
 	if (!can_place(b, t, x, y))
 		return (0);
+		printf("aaa\n");
 	while(j < t->h)
 	{
 		while(i < t->w)
 		{
-			if (elem(t, i, j) != '.')
-				elem(b, x + i, Y + j) = t->symb
-					i++;
+			if (ELEM(t, i, j) != '.')
+				ELEM(b, x + i, y + j) = t->symb;
+			i++;
 		}
 		j++;
 	}
 	return (1);
+}
+void    clean_board(board *b, int sz)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+
+	while(x < sz)
+	{
+		while(y < sz)
+		{
+				ELEM(b, x, y) = '.';
+				y++;
+		}
+		x++;
+	}
 }
