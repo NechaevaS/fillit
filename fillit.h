@@ -38,7 +38,7 @@ typedef struct
 }					pattern;
 extern tetr	g_t[19];
 # define MAX_FIG 26
-# define ELEM(board, x, y) board->s[y * (board->w) + x]
+# define ELEM(board, x, y) (board)->s[(y) * ((board)->w) + (x)]
 
 void from_board_to_pattern(pattern *p, board *b);
 int fill_pattern(pattern *p);

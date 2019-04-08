@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 			if (fd < 0)
 				return (-1);
 			else
-				printf("%d", read_file(fd));
+				printf("%d\n", read_file(fd));
 			i++;
 		}
 	}

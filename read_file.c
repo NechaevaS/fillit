@@ -45,19 +45,17 @@ int fill_pattern(pattern *p)
 	int	i;
 
 	type = 0;
-	x = 0;
-	y = 0;
 	i = 0;
 	tmp = create_board(4);
+
 	while (type < 19)
 	{
-		//printf("type %d\n", type);
+		x = 0;
 		while(x + g_t[type].w < 5)
 		{
-			//printf("x %d\n", x);
+			y = 0;
 			while(y + g_t[type].h < 5)
 			{
-				//printf("y %d\n", y);
 				fill_board(tmp, g_t + type, x, y);
 				from_board_to_pattern(p + i, tmp);
 				p[i].ntet = type;
@@ -80,7 +78,6 @@ int get_id(pattern *p, char *str)
 	i = 0;
 	while(p[i].s[0])
 	{
-		printf("1p %s\n", p[i].s);
 		if (ft_strncmp(p[i].s, str, 20) == 0)
 			return(p[i].ntet);
 		i++;
@@ -101,7 +98,6 @@ int   read_file(const int fd)
 	i = 0;
 	while (i < MAX_FIG)
 	{
-		printf("2p %d\n", i);
 		nread = read(fd, buf, 21);
 		buf[21] = '\0';
 		if ((type = get_id(p, buf)) == -1)

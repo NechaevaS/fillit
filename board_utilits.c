@@ -36,12 +36,12 @@ int     can_place(board *b, tetr *t, int x, int y)
 	int i;
 	int j;
 
-	i = 0;
 	j = 0;
-	if ((t->w + x >= b->w) || (t->h + y >= b->h))
+	if ((t->w + x > b->w) || (t->h + y > b->h))
 		return(0);
 	while (j < t->h)
 	{
+		i = 0;
 		while (i < t->w)
 		{
 			if (ELEM(t, i, j) != '.' && ELEM(b, x + i, y + j) != '.')
@@ -57,13 +57,12 @@ int     fill_board(board *b, tetr *t, int x, int y)
 	int i;
 	int j;
 
-	i = 0;
 	j = 0;
 	if (!can_place(b, t, x, y))
 		return (0);
-		printf("aaa\n");
 	while(j < t->h)
 	{
+		i = 0;
 		while(i < t->w)
 		{
 			if (ELEM(t, i, j) != '.')
@@ -80,10 +79,10 @@ void    clean_board(board *b, int sz)
 	int y;
 
 	x = 0;
-	y = 0;
 
 	while(x < sz)
 	{
+		y = 0;
 		while(y < sz)
 		{
 				ELEM(b, x, y) = '.';
