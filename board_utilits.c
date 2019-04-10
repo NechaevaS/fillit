@@ -31,48 +31,7 @@ void    free_board(board *b)
 	free(b->s);
 	free(b);
 }
-int     can_place(board *b, tetr *t, int x, int y)
-{
-	int i;
-	int j;
 
-	j = 0;
-	if ((t->w + x > b->w) || (t->h + y > b->h))
-		return(0);
-	while (j < t->h)
-	{
-		i = 0;
-		while (i < t->w)
-		{
-			if (ELEM(t, i, j) != '.' && ELEM(b, x + i, y + j) != '.')
-				return (0);
-			i++;
-		}
-		j++;
-	}
-	return (1);
-}
-int     fill_board(board *b, tetr *t, int x, int y)
-{
-	int i;
-	int j;
-
-	j = 0;
-	if (!can_place(b, t, x, y))
-		return (0);
-	while(j < t->h)
-	{
-		i = 0;
-		while(i < t->w)
-		{
-			if (ELEM(t, i, j) != '.')
-				ELEM(b, x + i, y + j) = t->symb;
-			i++;
-		}
-		j++;
-	}
-	return (1);
-}
 void    clean_board(board *b, int sz)
 {
 	int x;

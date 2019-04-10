@@ -21,7 +21,7 @@ typedef struct
 	char			*s;
 	int				h;
 	int				w;
-	char			symb;
+	int			*added;
 }					tetr;
 
 typedef struct		
@@ -47,6 +47,7 @@ int   read_file(const int fd);
 board  *create_board(int sz);
 void    free_board(board *b);
 int     can_place(board *b, tetr *t, int x, int y);
-int     fill_board(board *b, tetr *t, int x, int y);
+int     place_tetr(board *b, tetr *t, int x, int y, char symb);
+int     remove_tetr(board *b, tetr *t, int x, int y);
 void    clean_board(board *b, int sz);
 #endif
