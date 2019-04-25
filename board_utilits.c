@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:03:29 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/05 16:58:34 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:30:16 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,24 @@ void    clean_board(board *b, int sz)
 				y++;
 		}
 		x++;
+	}
+}
+void printBoard(board *b)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(i <= b->h)
+	{
+		printf("%d", i);
+		j = 0;
+		while(j <= b->w)
+		{
+			ft_putchar(b->s[j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
 	}
 }

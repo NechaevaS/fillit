@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 16:55:19 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/05 16:58:13 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:50:21 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int fill_pattern(pattern *p)
 			y = 0;
 			while(y + g_t[type].h < 5)
 			{
-				fill_board(tmp, g_t + type, x, y);
+				place_tetr(tmp, g_t + type, x, y);
 				from_board_to_pattern(p + i, tmp);
 				p[i].ntet = type;
 				clean_board(tmp, 4);
@@ -85,7 +85,7 @@ int get_id(pattern *p, char *str)
 	return (-1);
 }
 
-int   read_file(const int fd)
+int   read_file(const int fd, tetr **all_read)
 {
 	pattern	p[19 * 16];
 	char	buf[22];
@@ -104,6 +104,11 @@ int   read_file(const int fd)
 		{
 			ft_putstr("error\n");
 			return(0);
+		}
+		else
+		{
+			all_read[i] = g_t + get_id(p,buf);
+			printf("%s\n", all_read[i]->s);
 		}
 		if (nread == 20)
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:00:37 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/05 16:58:37 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:05:58 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct
 	char			*s;
 	int				h;
 	int				w;
-	int			*added;
 }					tetr;
 
 typedef struct		
@@ -40,14 +39,16 @@ extern tetr	g_t[19];
 # define MAX_FIG 26
 # define ELEM(board, x, y) (board)->s[(y) * ((board)->w) + (x)]
 
-void from_board_to_pattern(pattern *p, board *b);
-int fill_pattern(pattern *p);
-int get_id(pattern *p, char *str);
-int   read_file(const int fd);
-board  *create_board(int sz);
-void    free_board(board *b);
-int     can_place(board *b, tetr *t, int x, int y);
-int     place_tetr(board *b, tetr *t, int x, int y, char symb);
-int     remove_tetr(board *b, tetr *t, int x, int y);
-void    clean_board(board *b, int sz);
+void	from_board_to_pattern(pattern *p, board *b);
+int		fill_pattern(pattern *p);
+int		get_id(pattern *p, char *str);
+int		read_file(const int fd, tetr **all_read);
+board	*create_board(int sz);
+void	free_board(board *b);
+int		can_place(board *b, tetr *t, int x, int y);
+int		place_tetr(board *b, tetr *t, int x, int y);
+int		remove_tetr(board *b, tetr *t, int x, int y);
+void	clean_board(board *b, int sz);
+void	printBoard(board *b);
+int		solve(tetr **all_read);
 #endif

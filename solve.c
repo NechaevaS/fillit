@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 13:45:12 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/25 16:50:25 by snechaev         ###   ########.fr       */
+/*   Created: 2019/04/25 14:20:38 by snechaev          #+#    #+#             */
+/*   Updated: 2019/04/25 16:28:18 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <fcntl.h>
 #include "fillit.h"
 
-
-int main(int argc, char **argv)
+int solve(tetr **all_read)
 {
-	int		fd;
-	int		i;
-	tetr *all_read[MAX_FIG];
-	
-	ft_memset(all_read, 0, sizeof(tetr *)*MAX_FIG);
-	i = 1;	
-	if (argc > 1)
-	{
-		while (i < argc)
-		{
-			fd = open(argv[i], O_RDONLY);
-			if (fd < 0)
-				return (-1);
-			else
-				printf("%d\n", read_file(fd,all_read));
-				solve(all_read);
-			i++;
-		}
-	}
-	//system("leaks a.out");
-	return (0);
+    int i;
+    int b_sz;
+    board *b;
+
+    i = 0;
+    while(all_read[i] != NULL)
+    {
+        printf("%d", i);
+        i++;
+    }
+    b_sz = i * 4;
+    
+    b = create_board(b_sz);
+    printBoard(b);
+    return (1);
 }
