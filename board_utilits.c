@@ -6,13 +6,28 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:03:29 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/25 16:30:16 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/26 15:19:37 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "fillit.h"
+
+void printBoard(board *b)
+{
+	int	i;
+
+	i = 0;
+	while(i < b->h)
+	{
+
+			write(1, b->s, b->w);
+			ft_putchar('\n');
+			b->s = (b->s + b->w);
+		i++;
+	}
+}
 
 board  *create_board(int sz)
 {
@@ -23,6 +38,7 @@ board  *create_board(int sz)
 	ft_memset(b->s, '.', sz * sz);
 	b->h = sz;
 	b->w = sz;
+	//printBoard(b);
 	return (b);
 }
 
@@ -48,24 +64,5 @@ void    clean_board(board *b, int sz)
 				y++;
 		}
 		x++;
-	}
-}
-void printBoard(board *b)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while(i <= b->h)
-	{
-		printf("%d", i);
-		j = 0;
-		while(j <= b->w)
-		{
-			ft_putchar(b->s[j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
 	}
 }

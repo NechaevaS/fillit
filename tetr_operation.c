@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:03:29 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/25 14:08:16 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/26 16:58:37 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 int     can_place(board *b, tetr *t, int x, int y)
 {
-
 	int i;
 	int j;
 
@@ -38,14 +37,12 @@ int     can_place(board *b, tetr *t, int x, int y)
 	}
 	return (1);
 }
-int     place_tetr(board *b, tetr *t, int x, int y)
+int     place_tetr(board *b, tetr *t, int x, int y, char symb)
 {
 
 	int i;
 	int j;
-	char symb;
 
-	symb = '#';
 	j = 0;
 	if (!can_place(b, t, x, y))
 		return (0);

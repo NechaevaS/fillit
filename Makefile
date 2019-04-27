@@ -6,7 +6,7 @@
 #    By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/20 11:01:28 by snechaev          #+#    #+#              #
-#    Updated: 2019/04/25 16:15:43 by snechaev         ###   ########.fr        #
+#    Updated: 2019/04/26 15:13:28 by snechaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,7 @@ CFLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	gcc -o $(NAME) $(OBJS)
 
 $(OBJS) : fillit.h
 

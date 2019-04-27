@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:00:37 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/25 16:05:58 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/26 16:57:53 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		read_file(const int fd, tetr **all_read);
 board	*create_board(int sz);
 void	free_board(board *b);
 int		can_place(board *b, tetr *t, int x, int y);
-int		place_tetr(board *b, tetr *t, int x, int y);
+int		place_tetr(board *b, tetr *t, int x, int y, char symb);
 int		remove_tetr(board *b, tetr *t, int x, int y);
 void	clean_board(board *b, int sz);
 void	printBoard(board *b);
