@@ -6,21 +6,21 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:03:29 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/26 15:19:37 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/29 15:39:11 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "fillit.h"
 
-void printBoard(board *b)
+void	print_board(board *b)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 
 	tmp = b->s;
 	i = 0;
-	while(i < b->h)
+	while (i < b->h)
 	{
 		write(1, tmp, b->w);
 		ft_putchar('\n');
@@ -29,11 +29,11 @@ void printBoard(board *b)
 	}
 }
 
-board  *create_board(int sz)
+board	*create_board(int sz)
 {
-	board   *b;
+	board	*b;
 
-	b = (board  *)malloc(sizeof(board));
+	b = (board *)malloc(sizeof(board));
 	b->s = (char *)malloc(sz * sz);
 	ft_memset(b->s, '.', sz * sz);
 	b->h = sz;
@@ -41,23 +41,23 @@ board  *create_board(int sz)
 	return (b);
 }
 
-void    free_board(board *b)
+void	free_board(board *b)
 {
 	free(b->s);
 	free(b);
 }
 
-void    clean_board(board *b, int sz)
+void	clean_board(board *b, int sz)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 
-	while(x < sz)
+	while (x < sz)
 	{
 		y = 0;
-		while(y < sz)
+		while (y < sz)
 		{
 			ELEM(b, x, y) = '.';
 			y++;

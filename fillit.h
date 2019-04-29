@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:00:37 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/26 16:57:53 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/29 14:30:26 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@
 # include <unistd.h>
 # include "libft/libft.h"
 
-typedef struct		
+typedef struct
 {
 	char			*s;
 	int				h;
 	int				w;
 }					tetr;
-
-typedef struct		
+typedef struct
+{
+	int				x;
+	int				y;
+}					pos;
+typedef struct
 {
 	char			*s;
 	int				h;
 	int				w;
 }					board;
 
-typedef struct		
+typedef struct
 {
-	char s[21];
+	char			s[21];
 	int				ntet;
 }					pattern;
 extern tetr	g_t[19];
@@ -49,6 +53,6 @@ int		can_place(board *b, tetr *t, int x, int y);
 int		place_tetr(board *b, tetr *t, int x, int y, char symb);
 int		remove_tetr(board *b, tetr *t, int x, int y);
 void	clean_board(board *b, int sz);
-void	printBoard(board *b);
+void	print_board(board *b);
 int		solve(tetr **all_read);
 #endif

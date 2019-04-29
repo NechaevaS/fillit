@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 16:55:19 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/26 19:10:19 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/29 16:18:43 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ int		get_id(pattern *p, char *str)
 	while (p[i].s[0])
 	{
 		if (ft_strncmp(p[i].s, str, 20) == 0)
+		{
 			return (p[i].ntet);
+		}
 		i++;
 	}
 	return (-1);
@@ -90,7 +92,6 @@ int		read_file(const int fd, tetr **all_read)
 	pattern		p[19 * 16];
 	char		buf[22];
 	int			i;
-	int			type;
 	int			nread;
 
 	ft_memset(p, 0, 19 * 16 * sizeof(pattern));
@@ -100,7 +101,7 @@ int		read_file(const int fd, tetr **all_read)
 	{
 		nread = read(fd, buf, 21);
 		buf[21] = '\0';
-		if ((type = get_id(p, buf)) == -1)
+		if (get_id(p, buf) == -1)
 		{
 			ft_putstr("error\n");
 			return (0);
@@ -111,8 +112,7 @@ int		read_file(const int fd, tetr **all_read)
 			return (1);
 		i++;
 	}
-
-	if (i == MAX_FIG)
+	if (i >= MAX_FIG)
 	{
 		ft_putstr("error\n");
 		return (0);

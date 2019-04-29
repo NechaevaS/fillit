@@ -6,22 +6,21 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 13:03:29 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/26 16:58:37 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/29 16:31:41 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "fillit.h"
 
-int     can_place(board *b, tetr *t, int x, int y)
+int	can_place(board *b, tetr *t, int x, int y)
 {
 	int i;
 	int j;
 
 	j = 0;
 	if ((t->w + x > b->w) || (t->h + y > b->h))
-		return(0);
+		return (0);
 	while (j < t->h)
 	{
 
@@ -37,22 +36,20 @@ int     can_place(board *b, tetr *t, int x, int y)
 	}
 	return (1);
 }
-int     place_tetr(board *b, tetr *t, int x, int y, char symb)
-{
 
+int	place_tetr(board *b, tetr *t, int x, int y, char symb)
+{
 	int i;
 	int j;
 
 	j = 0;
 	if (!can_place(b, t, x, y))
 		return (0);
-	while(j < t->h)
+	while (j < t->h)
 	{
-
 		i = 0;
-		while(i < t->w)
+		while (i < t->w)
 		{
-
 			if (ELEM(t, i, j) != '.')
 				ELEM(b, x + i, y + j) = symb;
 			i++;
@@ -61,7 +58,8 @@ int     place_tetr(board *b, tetr *t, int x, int y, char symb)
 	}
 	return (1);
 }
-int     remove_tetr(board *b, tetr *t, int x, int y)
+
+int	remove_tetr(board *b, tetr *t, int x, int y)
 {
 
 	int i;
@@ -70,13 +68,11 @@ int     remove_tetr(board *b, tetr *t, int x, int y)
 	j = 0;
 	if (!can_place(b, t, x, y))
 		return (0);
-	while(j < t->h)
+	while (j < t->h)
 	{
-
 		i = 0;
-		while(i < t->w)
+		while (i < t->w)
 		{
-
 			if (ELEM(t, i, j) != '.')
 				ELEM(b, x + i, y + j) = '.';
 			i++;
