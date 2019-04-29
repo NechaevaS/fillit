@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "fillit.h"
 
 void printBoard(board *b)
 {
 	int	i;
+	char	*tmp;
 
+	tmp = b->s;
 	i = 0;
 	while(i < b->h)
 	{
-
-			write(1, b->s, b->w);
-			ft_putchar('\n');
-			b->s = (b->s + b->w);
+		write(1, tmp, b->w);
+		ft_putchar('\n');
+		tmp = (tmp + b->w);
 		i++;
 	}
 }
@@ -38,7 +38,6 @@ board  *create_board(int sz)
 	ft_memset(b->s, '.', sz * sz);
 	b->h = sz;
 	b->w = sz;
-	//printBoard(b);
 	return (b);
 }
 
@@ -60,8 +59,8 @@ void    clean_board(board *b, int sz)
 		y = 0;
 		while(y < sz)
 		{
-				ELEM(b, x, y) = '.';
-				y++;
+			ELEM(b, x, y) = '.';
+			y++;
 		}
 		x++;
 	}

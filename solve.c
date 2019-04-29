@@ -10,52 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
+
+int find_board_sz(tetr **all_read)
+{
+	int i;
+	int n;
+    	
+	n = 0;
+	while(all_read[n] != NULL)
+    	{
+        	n++;
+    	}
+	i = 1;
+	while((i * i) < (n * 4))
+	{
+		i++;
+	}
+	return (i);
+}
 
 int place_next(board *b, tetr **all_read, int ind)
 {
-    int x;
-    int y;
-   
-    y = 0;
-    if (!all_read)
-        return (1);
-    while(y < b->h)
-    {
-        printf("%d %d\n", x, y);
-        x = 0;
-        while(x < b->w)
-        {
-            if (place_tetr(b, *all_read, x, y, 'A' + ind ))
-            {   printBoard(b);
-                if (place_next(b, all_read, ind + 1)
-                {
-                printf("%s\n", all_read);
-                    return (1);
-                }
-                else
-                    remove_tetr(b, *all_read, x, y);
-            }
-            x++;
-        }
-        y++;
+	int x;
+	int y;
+
+	if (all_read[ind] == NULL)
+		return (1);
+	y = 0;
+	while(y < b->h)
+	{
+		x = 0;
+		while(x < b->w)
+		{
+			if(place_tetr(b, all_read[ind], x, y, 'A' + ind))
+			{   
+				if (place_next(b, all_read , ind + 1))
+				{
+					return (1);
+				}
+				else
+					remove_tetr(b, all_read[ind], x, y);
+			}
+			x++;
+		}
+		y++;
     }
     return (0);
 }
 
 int solve(tetr **all_read)
 {
-    int i;
     int b_sz;
     board *b;
 
-    i = 0;
-    while(all_read[i] != NULL)
-    {
-        i++;
-    }
-    b_sz = (i * 4);
+
+    b_sz = find_board_sz(all_read);
     b = create_board(b_sz);
     while(!place_next(b, all_read, 0))
     {

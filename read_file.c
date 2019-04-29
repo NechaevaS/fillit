@@ -96,7 +96,7 @@ int		read_file(const int fd, tetr **all_read)
 	ft_memset(p, 0, 19 * 16 * sizeof(pattern));
 	fill_pattern(p);
 	i = 0;
-	while (i++ < MAX_FIG)
+	while (i < MAX_FIG)
 	{
 		nread = read(fd, buf, 21);
 		buf[21] = '\0';
@@ -109,7 +109,9 @@ int		read_file(const int fd, tetr **all_read)
 			all_read[i] = g_t + get_id(p, buf);
 		if (nread == 20)
 			return (1);
+		i++;
 	}
+
 	if (i == MAX_FIG)
 	{
 		ft_putstr("error\n");

@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <fcntl.h>
 #include "fillit.h"
-
 
 int main(int argc, char **argv)
 {
@@ -31,11 +29,14 @@ int main(int argc, char **argv)
 			if (fd < 0)
 				return (-1);
 			else
-				printf("%d\n", read_file(fd,all_read));
-				solve(all_read);
+			{
+				if(read_file(fd, all_read))
+					solve(all_read);
+			}
 			i++;
 		}
 	}
-	//system("leaks a.out");
+//	system("leaks a.out");
 	return (0);
 }
+
