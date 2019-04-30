@@ -13,13 +13,13 @@
 #include <stdlib.h>
 #include "fillit.h"
 
-int	can_place(board *b, tetr *t, int x, int y)
+int	can_place(board *b, tetr *t, loc pos)
 {
 	int i;
 	int j;
 
 	j = 0;
-	if ((t->w + x > b->w) || (t->h + y > b->h))
+	if ((t->w + pos.x > b->w) || (t->h + pos.y > b->h))
 		return (0);
 	while (j < t->h)
 	{
@@ -28,7 +28,7 @@ int	can_place(board *b, tetr *t, int x, int y)
 		while (i < t->w)
 		{
 
-			if (ELEM(t, i, j) != '.' && ELEM(b, x + i, y + j) != '.')
+			if (ELEM(t, i, j) != '.' && ELEM(b, pos.x + i, pos.y + j) != '.')
 				return (0);
 			i++;
 		}
@@ -37,13 +37,13 @@ int	can_place(board *b, tetr *t, int x, int y)
 	return (1);
 }
 
-int	place_tetr(board *b, tetr *t, int x, int y, char symb)
+int	place_tetr(board *b, tetr *t, loc pos, char symb)
 {
 	int i;
 	int j;
 
 	j = 0;
-	if (!can_place(b, t, x, y))
+	if (!can_place(b, t, pos))
 		return (0);
 	while (j < t->h)
 	{
@@ -51,7 +51,7 @@ int	place_tetr(board *b, tetr *t, int x, int y, char symb)
 		while (i < t->w)
 		{
 			if (ELEM(t, i, j) != '.')
-				ELEM(b, x + i, y + j) = symb;
+				ELEM(b, pos.x + i, pos.y + j) = symb;
 			i++;
 		}
 		j++;
@@ -59,14 +59,14 @@ int	place_tetr(board *b, tetr *t, int x, int y, char symb)
 	return (1);
 }
 
-int	remove_tetr(board *b, tetr *t, int x, int y)
+int	remove_tetr(board *b, tetr *t, loc pos)
 {
 
 	int i;
 	int j;
 
 	j = 0;
-	if (!can_place(b, t, x, y))
+	if (!can_place(b, t, pos))
 		return (0);
 	while (j < t->h)
 	{
@@ -74,7 +74,7 @@ int	remove_tetr(board *b, tetr *t, int x, int y)
 		while (i < t->w)
 		{
 			if (ELEM(t, i, j) != '.')
-				ELEM(b, x + i, y + j) = '.';
+				ELEM(b, pos.x + i, pos.y + j) = '.';
 			i++;
 		}
 		j++;

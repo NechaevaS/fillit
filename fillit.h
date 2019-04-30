@@ -26,7 +26,7 @@ typedef struct
 {
 	int				x;
 	int				y;
-}					pos;
+}					loc;
 typedef struct
 {
 	char			*s;
@@ -44,14 +44,15 @@ extern tetr	g_t[19];
 # define ELEM(board, x, y) (board)->s[(y) * ((board)->w) + (x)]
 
 void	from_board_to_pattern(pattern *p, board *b);
+//int		create_pattern(pattern *p);
 int		fill_pattern(pattern *p);
 int		get_id(pattern *p, char *str);
 int		read_file(const int fd, tetr **all_read);
 board	*create_board(int sz);
 void	free_board(board *b);
-int		can_place(board *b, tetr *t, int x, int y);
-int		place_tetr(board *b, tetr *t, int x, int y, char symb);
-int		remove_tetr(board *b, tetr *t, int x, int y);
+int		can_place(board *b, tetr *t, loc pos);
+int		place_tetr(board *b, tetr *t, loc pos, char symb);
+int		remove_tetr(board *b, tetr *t, loc pos);
 void	clean_board(board *b, int sz);
 void	print_board(board *b);
 int		solve(tetr **all_read);

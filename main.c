@@ -30,7 +30,12 @@ int	main(int argc, char **argv)
 				return (-1);
 			else
 			{
-				if (read_file(fd, all_read))
+				if (!read_file(fd, all_read))
+				{
+					ft_putstr("error\n");
+					return (0);
+				}
+				else
 					solve(all_read);
 			}
 			i++;

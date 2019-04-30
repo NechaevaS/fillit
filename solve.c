@@ -32,27 +32,26 @@ int	find_board_sz(tetr **all_read)
 
 int	place_next(board *b, tetr **all_read, int ind)
 {
-	int x;
-	int y;
+	loc pos;
 
 	if (all_read[ind] == NULL || ind >= MAX_FIG)
 		return (1);
-	y = 0;
-	while (y < b->h)
+	pos.y = 0;
+	while (pos.y < b->h)
 	{
-		x = 0;
-		while (x < b->w)
+		pos.x = 0;
+		while (pos.x < b->w)
 		{
-			if (place_tetr(b, all_read[ind], x, y, 'A' + ind))
+			if (place_tetr(b, all_read[ind], pos, 'A' + ind))
 			{
 				if (place_next(b, all_read, ind + 1))
 					return (1);
 				else
-					remove_tetr(b, all_read[ind], x, y);
+					remove_tetr(b, all_read[ind], pos);
 			}
-			x++;
+			pos.x++;
 		}
-		y++;
+		pos.y++;
 	}
 	return (0);
 }
