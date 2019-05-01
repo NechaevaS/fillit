@@ -13,7 +13,7 @@
 NAME = fillit
 OBJS = main.o\
 		board_utilits.o\
-		read_file.o\
+		2read_file.o\
 		tetr_operation.o\
 		tetrimino.o\
 		solve.o\
