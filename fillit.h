@@ -6,7 +6,7 @@
 /*   By: snechaev <snechaev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 13:00:37 by snechaev          #+#    #+#             */
-/*   Updated: 2019/04/29 14:30:26 by snechaev         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:06:59 by snechaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ extern tetr	g_t[19];
 # define ELEM(board, x, y) (board)->s[(y) * ((board)->w) + (x)]
 
 void	from_board_to_pattern(pattern *p, board *b);
-//int		create_pattern(pattern *p);
-int		fill_pattern(pattern *p);
+int		create_pattern(pattern *p);
+int		fill_pattern(pattern *p, board *tmp, int type, int counter);
 int		get_id(pattern *p, char *str);
 int		read_file(const int fd, tetr **all_read);
 board	*create_board(int sz);
